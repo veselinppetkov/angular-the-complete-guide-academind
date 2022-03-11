@@ -1,0 +1,5 @@
+<input type="text" [(ngModel)]="username" class="form-control" />
+<p class="lead">{{ username }}</p>
+<button class="btn btn-light" [disabled]="isEmpty()" (click)="onClick()">
+  Reset
+</button>

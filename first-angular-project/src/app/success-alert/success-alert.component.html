@@ -1,0 +1,12 @@
+<!-- <h2>This {{ "server" }} works properly on {{ hostName }}:{{ "3000" }}</h2> -->
+<input type="text" class="form-control" [(ngModel)]="hostName" />
+<button
+  class="btn btn-primary"
+  (click)="onCreateServer()"
+  [disabled]="!allowNewServer"
+>
+  Add new server
+</button>
+<p [ngClass]="{ top_p: hostName === 'localhost' }">
+  The server was successfully created on hostname: {{ hostName }}
+</p>
