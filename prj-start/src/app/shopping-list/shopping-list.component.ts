@@ -13,4 +13,8 @@ new Ingredient(`Salt`, 40),
 new Ingredient(`Spices`, 50),
 new Ingredient(`Dry Herbs`, 10),
     ];
+
+    onIngredientAdded(ingredient: Ingredient) {
+        this.ingredients.push(ingredient)
+    }
 }
