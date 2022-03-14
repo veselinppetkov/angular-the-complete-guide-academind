@@ -35,4 +35,10 @@
   </div>
   <p appBasicHighlight>Is it working?</p>
   <p [appBetterHighlight]="'pink'" [defaultColor]="'orange'">Is it working?</p>
+  <div [ngSwitch]="value" class="container">
+    <p *ngSwitchCase="10">My value is 10</p>
+    <p *ngSwitchCase="5">My value is 5</p>
+    <p *ngSwitchCase="0">My value is 0</p>
+    <p *ngSwitchDefault>I am the default value</p>
+  </div>
 </div>

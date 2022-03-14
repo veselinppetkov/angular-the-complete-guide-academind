@@ -11,5 +11,7 @@ export class AppComponent {
   oddNums = this.numbers.filter(x => x % 2 != 0)
   evenNums = this.numbers.filter(x => x % 2 == 0)
 
+  value = 5;
+
   onlyOdd = false;
 }
