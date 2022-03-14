@@ -6,7 +6,7 @@
       </button>
       <br /><br />
       <ul class="list-group">
-        <div class="container" *ngIf="onlyOdd">
+        <div class="container" *appUnless="onlyOdd">
           <li
             *ngFor="let odd of oddNums"
             class="list-group-item"
@@ -21,7 +21,7 @@
         <div
           [ngClass]="{ odd: even % 2 !== 0 }"
           class="container"
-          *ngIf="!onlyOdd"
+          *appUnless="!onlyOdd"
           [ngStyle]="{
             color: even % 2 !== 0 ? 'red' : 'transparent'
           }"
