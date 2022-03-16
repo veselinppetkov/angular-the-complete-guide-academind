@@ -9,10 +9,15 @@ import { LoggingService } from '../shared/logging.service';
 })
 export class NewAccountComponent {
 
-  constructor(private accountsService: AccountsService) {}
+  constructor(private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe((status: string) => {
+      alert(`New status is: ` + status)
+    });
+  }
 
   onCreateAccount(accountName:string, status:string) {
     this.accountsService.addAccount({name: accountName, status});
+
   }
 
 }
