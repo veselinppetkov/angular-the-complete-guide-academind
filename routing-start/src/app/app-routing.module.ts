@@ -4,6 +4,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 
 import { HomeComponent } from './home/home.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
+import { ServerResolver } from './servers/server-resolver.service';
 import { ServerComponent } from './servers/server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { AuthGuard } from './services/auth-guard.service';
@@ -17,7 +18,7 @@ const appRoutes = [
       {path: ':id/:name', component: UserComponent},
   ]},
     {path: 'servers', canActivateChild: [AuthGuard], component: ServersComponent, children: [
-      {path: ':id', component: ServerComponent},
+      {path: ':id', component: ServerComponent, resolve: {server: ServerResolver}},
       {path: ':id/edit', component: EditServerComponent, canDeactivate:[CanDeactiveGuard]}
   ]},
     {path: 'not-found', component: ErrorPageComponent, data: {msg: 'Opps..something went wrong'}},
