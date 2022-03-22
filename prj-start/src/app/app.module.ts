@@ -10,6 +10,7 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeSelectorComponent } from './recipes/recipe-selector/recipe-selector.component';
 
 import { DropdownDirective } from './directives/dropdown.directive';
 
@@ -23,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     ShoppingListComponent,
     ListEditComponent,
     RecipeListComponent,
+    RecipeSelectorComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
     RecipesComponent,
