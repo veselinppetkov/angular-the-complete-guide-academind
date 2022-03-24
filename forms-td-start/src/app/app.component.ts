@@ -9,7 +9,17 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   @ViewChild(`formData`) formData: NgForm;
   freeText: string = "";
+
+  isSubmitted: boolean = false;
   genders: string[] = ['male', 'female'];
+
+  user = {
+    username: "",
+    email: "",
+    secretQuestion: "",
+    secretAnswer: "",
+    gender: "",
+  }
 
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -21,12 +31,16 @@ export class AppComponent {
     })
   }
 
-  // onSubmit(data: NgForm) {
-  //   console.log(data);
-  // }
-
   onSubmit() {
-    console.log(this.formData);
+    this.isSubmitted = true;
+
+    console.log(this.formData.value.userData.username)
+
+    this.user.username = this.formData.value.userData.username;
+    this.user.email = this.formData.value.userData.email;
+    this.user.secretQuestion = this.formData.value.secret;
+    this.user.secretAnswer = this.formData.value.textarea;
+    this.user.gender = this.formData.value.gender;
   }
 
 }

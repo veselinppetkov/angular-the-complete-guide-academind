@@ -90,4 +90,13 @@
       </form>
     </div>
   </div>
+  <hr />
+  <div class="row" *ngIf="isSubmitted">
+    <h3>Your userdata:</h3>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Secret: {{ user.secretQuestion }}</p>
+    <p>Secret answer: {{ user.secretAnswer }}</p>
+    <p>Gender: {{ user.gender }}</p>
+  </div>
 </div>
