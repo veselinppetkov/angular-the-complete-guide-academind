@@ -41,6 +41,8 @@ export class AppComponent {
     this.user.secretQuestion = this.formData.value.secret;
     this.user.secretAnswer = this.formData.value.textarea;
     this.user.gender = this.formData.value.gender;
+
+    this.formData.reset()
   }
 
 }
