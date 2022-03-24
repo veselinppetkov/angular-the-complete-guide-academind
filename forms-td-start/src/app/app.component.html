@@ -13,6 +13,7 @@
               ngModel
               required
               #username="ngModel"
+              placeholder="Example: vese7o0o"
             />
             <span
               class="help-block"
@@ -34,6 +35,7 @@
               required
               email
               #email="ngModel"
+              placeholder="Example: veselin4oo@abv.bg"
             />
             <span class="help-block" *ngIf="email.invalid && email.touched"
               >Please enter a valid e-mail</span
@@ -46,7 +48,7 @@
             id="secret"
             class="form-control"
             name="secret"
-            ngModel
+            [ngModel]="'pet'"
             required
           >
             <option value="pet">Your first Pet?</option>
