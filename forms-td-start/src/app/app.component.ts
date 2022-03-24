@@ -13,6 +13,12 @@ export class AppComponent {
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+    this.formData.form.patchValue({
+      userData: {
+        username: suggestedName,
+        email: suggestedName + '@abv.bg'
+      }
+    })
   }
 
   // onSubmit(data: NgForm) {
