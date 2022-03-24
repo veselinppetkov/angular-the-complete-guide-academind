@@ -65,6 +65,17 @@
           <textarea rows="3" name="textarea" [(ngModel)]="freeText"></textarea>
           <p>{{ freeText }}</p>
         </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              [ngModel]="genders[0]"
+              [value]="gender"
+            />
+            {{ gender }}
+          </label>
+        </div>
         <button
           class="btn btn-primary"
           type="submit"
