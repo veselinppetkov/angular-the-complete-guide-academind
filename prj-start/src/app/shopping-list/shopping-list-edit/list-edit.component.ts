@@ -51,10 +51,12 @@ export class ListEditComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe()
+        this.subscription.unsubscribe();
     }
 
     onClear() {
-        this.formData.reset()
+        this.formData.reset();
+        this.editMode = false;
+
     }
 }
