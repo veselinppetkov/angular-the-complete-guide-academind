@@ -59,4 +59,8 @@ export class ListEditComponent implements OnInit, OnDestroy {
         this.editMode = false;
 
     }
+
+    onDelete() {
+        this.shoppingListService.removeIngredient(this.editItemIndex);
+    }
 }
