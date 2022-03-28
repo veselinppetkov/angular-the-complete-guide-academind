@@ -15,6 +15,7 @@ export class ListEditComponent implements OnInit, OnDestroy {
     subscription: Subscription;
     editMode: boolean = false;
     editItemIndex: number;
+    ingredientEditted: Ingredient;
 
     constructor(private shoppingListService: ShoppingListService) { };
 
@@ -31,6 +32,13 @@ export class ListEditComponent implements OnInit, OnDestroy {
         this.subscription = this.shoppingListService.startedEditing.subscribe((index: number) => {
             this.editItemIndex = index;
             this.editMode = true;
+
+            this.ingredientEditted = this.shoppingListService.getIngredient(index);
+
+            this.formData.setValue({
+                name: this.ingredientEditted.name,
+                amount: this.ingredientEditted.amount
+            })
         });
     }
 
