@@ -1,12 +1,50 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="projectName">Project Name:</label>
+          <input
+            formControlName="projectName"
+            class="form-control"
+            type="text"
+            id="projectName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Mail:</label>
+          <input
+            formControlName="email"
+            class="form-control"
+            type="email"
+            id="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="status">Project Status:</label>
+          <select
+            id="status"
+            formControlName="projectStatus"
+            class="form-control"
+          >
+            <option *ngFor="let status of projectStatus" value="{{ status }}">
+              {{ status }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <button type="submit">Create Project</button>
+        </div>
+      </form>
       <!--
           Create a Form with the following Controls and Validators
-          1) Project Name (should not be empty)
-          2) Mail (should not be a empty and a valid email)
-          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
-          4) Submit Button
+          1) Project Name (should not be empty) - V
+          2) Mail (should not be a empty and a valid email) - V
+          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished' - V
+          4) Submit Button - V
 
           Add your own Validator which doesn't allow "Test" as a Project Name
 
