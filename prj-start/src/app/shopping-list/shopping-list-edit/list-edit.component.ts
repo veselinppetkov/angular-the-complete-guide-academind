@@ -1,4 +1,5 @@
-import { Component, OnInit,ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { Ingredient } from "src/app/shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list.service";
 
@@ -9,18 +10,23 @@ import { ShoppingListService } from "../shopping-list.service";
 })
 
 export class ListEditComponent implements OnInit {
-    @ViewChild(`nameInput`, {static: false}) nameInput: any;
-    @ViewChild(`amountInput`, {static: false}) amountInput: any;
+    @ViewChild(`formData`) formData: NgForm;
 
-    constructor(private shoppingListService: ShoppingListService) {};
+    constructor(private shoppingListService: ShoppingListService) { };
 
-    onAddClicked() {
-    const ingredientName = this.nameInput.nativeElement.value
-    const ingredientAmount = this.amountInput.nativeElement.value
-    const newIngredient = new Ingredient(ingredientName, ingredientAmount)
+    onSubmit() {
+        const ingredientName = this.formData.value.name;
+        const ingredientAmount = this.formData.value.amount;
 
-    this.shoppingListService.addIngredient(newIngredient);
+        const newIngredient = new Ingredient(ingredientName, ingredientAmount)
+
+        this.shoppingListService.addIngredient(newIngredient);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
+
+    onClear() {
+        this.formData.reset()
+    }
 }
