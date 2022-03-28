@@ -31,6 +31,7 @@ export class ListEditComponent implements OnInit, OnDestroy {
             this.shoppingListService.addIngredient(newIngredient);
         }
 
+        this.editMode = false;
         this.formData.reset();
 
     }
