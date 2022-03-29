@@ -5,6 +5,7 @@ import { Recipe } from "./recipe.model";
 
 export class RecipeService {
     selectedRecipe = new Subject<Recipe>();
+    recipesChanged = new Subject<Recipe[]>();
 
     private recipes: Recipe[] = [
         new Recipe(`Miso Ramen`, `A step-by-step guide to getting this universally adored noodle soup just right.`, `https://www.forkknifeswoon.com/wp-content/uploads/2014/10/simple-homemade-chicken-ramen-fork-knife-swoon-01.jpg`, [
@@ -23,6 +24,16 @@ export class RecipeService {
 
     getRecipeById(id: number) {
         return this.recipes[id];
+    }
+
+    addRecipe(newRecipe: Recipe) {
+        this.recipes.push(newRecipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(id: number, newRecipe: Recipe) {
+        this.recipes[id] = newRecipe;
+        this.recipesChanged.next(this.recipes.slice());
     }
 
 
