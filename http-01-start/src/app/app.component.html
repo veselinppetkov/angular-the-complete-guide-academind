@@ -58,9 +58,7 @@
           <p>{{ post.content }}</p>
         </li>
       </ul>
-      <div class="spinner-border" role="status" *ngIf="isFetching">
-        <span class="sr-only">Loading...</span>
-      </div>
+      <div class="loader" *ngIf="isFetching">Loading...</div>
     </div>
   </div>
 </div>
