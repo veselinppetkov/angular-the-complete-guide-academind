@@ -9,7 +9,7 @@ import { Post } from './post.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loadedPosts = [];
+  loadedPosts: Post[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -35,12 +35,14 @@ export class AppComponent implements OnInit {
       .pipe(map(responseData => {
         const postsArray: Post[] = [];
         for (const key in responseData) {
-          postsArray.push({ ...responseData[key], id: key })
+          if (responseData.hasOwnProperty(key)) {
+            postsArray.push({ ...responseData[key], id: key })
+          }
         }
         return postsArray;
       }))
       .subscribe((dataFetched) => {
-        console.log(dataFetched);
+        this.loadedPosts = dataFetched;
       })
   }
 }
