@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  filteredStatus: string = '';
+
   servers = [
     {
       instanceType: 'medium',
@@ -32,7 +34,7 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     }
   ];
-  getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
+  getStatusClasses(server: { instanceType: string, name: string, status: string, started: Date }) {
     return {
       'list-group-item-success': server.status === 'stable',
       'list-group-item-warning': server.status === 'offline',
