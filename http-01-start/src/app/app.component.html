@@ -61,9 +61,16 @@
       <button *ngIf="isFetching && !error" class="btn btn-default">
         Loading...
       </button>
-      <div class="alert alert-danger">
+      <div class="alert alert-danger" *ngIf="error">
         <h2>An Error Occured</h2>
         <p>Error status is: {{ error }}</p>
+        <button
+          style="margin-top: 10px"
+          class="btn btn-danger"
+          (click)="onHandleError()"
+        >
+          OK
+        </button>
       </div>
     </div>
   </div>

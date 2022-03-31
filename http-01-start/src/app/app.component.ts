@@ -44,4 +44,9 @@ export class AppComponent implements OnInit {
     });
   }
 
+  onHandleError() {
+    this.isFetching = false;
+    this.error = null;
+  }
+
 }
