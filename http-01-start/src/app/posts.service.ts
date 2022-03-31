@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -15,7 +15,9 @@ export class PostsService {
     }
 
     fetchPosts() {
-        return this.http.get<{ [key: string]: Post }>('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
+        return this.http.get<{ [key: string]: Post }>('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json', {
+            headers: new HttpHeaders({ "X-Authorization": "You the 1!" })
+        })
             .pipe(map(responseData => {
                 const postsArray: Post[] = [];
                 for (const key in responseData) {
