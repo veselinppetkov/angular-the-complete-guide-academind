@@ -14,7 +14,7 @@ export class PostsService {
     }
 
     fetchPosts() {
-        this.http.get<{ [key: string]: Post }>('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
+        return this.http.get<{ [key: string]: Post }>('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
             .pipe(map(responseData => {
                 const postsArray: Post[] = [];
                 for (const key in responseData) {
@@ -24,7 +24,6 @@ export class PostsService {
                 }
                 return postsArray;
             }))
-            .subscribe();
     }
 
 }
