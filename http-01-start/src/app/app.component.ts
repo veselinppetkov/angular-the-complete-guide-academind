@@ -9,12 +9,15 @@ import { PostsService } from './posts.service';
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching: boolean = false;
+  error = null;
 
   initialFetching() {
     this.isFetching = true;
     this.postsService.fetchPosts().subscribe((posts) => {
       this.isFetching = false;
       this.loadedPosts = posts;
+    }, error => {
+      this.error = error.statusText;
     });
   }
 
