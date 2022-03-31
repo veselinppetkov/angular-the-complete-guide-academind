@@ -35,11 +35,12 @@ export class PostsService {
     removePosts() {
         return this.http.delete('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
             {
-                observe: 'events'
+                observe: 'events',
+                responseType: 'text'
             }
         ).pipe(tap(event => {
             if (event.type === HttpEventType.Response) {
-                console.log(event.body)
+                console.log(event)
             }
         }));
     }
