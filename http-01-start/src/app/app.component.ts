@@ -10,30 +10,35 @@ export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching: boolean = false;
 
+  initialFetching() {
+    this.isFetching = true;
+    this.postsService.fetchPosts().subscribe((posts) => {
+      this.isFetching = false;
+      this.loadedPosts = posts;
+    });
+  }
+
   constructor(private postsService: PostsService) { }
 
   ngOnInit() {
-    this.isFetching = true;
-    this.postsService.fetchPosts().subscribe((posts) => {
-      this.isFetching = false;
-      this.loadedPosts = posts;
-    });
+    this.initialFetching();
   }
 
   onCreatePost(postData: Post) {
-    this.postsService.createPost(postData);
+    this.postsService.createPost(postData).subscribe(() => {
+      this.initialFetching();
+    });
+
   }
 
   onFetchPosts() {
-    this.isFetching = true;
-    this.postsService.fetchPosts().subscribe((posts) => {
-      this.isFetching = false;
-      this.loadedPosts = posts;
-    });
+    this.initialFetching();
   }
 
   onClearPosts() {
-    // Send Http request
+    this.postsService.removePosts().subscribe(() => {
+      this.loadedPosts = [];
+    });
   }
 
 }

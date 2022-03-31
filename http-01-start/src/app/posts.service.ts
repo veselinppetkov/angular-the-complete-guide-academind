@@ -10,7 +10,7 @@ export class PostsService {
     constructor(private http: HttpClient) { };
 
     createPost(postData: Post) {
-        this.http.post<{ name: string }>('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json', postData).subscribe();
+        return this.http.post<{ name: string }>('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json', postData);
     }
 
     fetchPosts() {
@@ -24,6 +24,10 @@ export class PostsService {
                 }
                 return postsArray;
             }))
+    }
+
+    removePosts() {
+        return this.http.delete('https://ng-complete-guide-7cab5-default-rtdb.europe-west1.firebasedatabase.app/posts.json');
     }
 
 }
