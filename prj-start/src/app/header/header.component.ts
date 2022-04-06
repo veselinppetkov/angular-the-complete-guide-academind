@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onFetchData() {
-    console.log(`To be continued....`)
+    this.dataStorageService.fetchData();
   }
 
 
