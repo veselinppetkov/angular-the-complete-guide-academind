@@ -45,6 +45,26 @@ export class AuthService {
         )
     }
 
+    autoLogin() {
+        const userData: {
+            email: string,
+            id: string,
+            _token: string,
+            _tokenExpDate: string,
+        } = JSON.parse(localStorage.getItem('userData'));
+
+        if (!userData) {
+            return;
+        }
+
+        const userLoaded = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpDate));
+
+        if (userLoaded.token) {
+            this.user.next(userLoaded);
+        }
+
+    }
+
     logout() {
         this.user.next(null);
         this.router.navigate(['/auth']);
@@ -85,6 +105,7 @@ export class AuthService {
         const expDate = new Date(new Date().getTime() + expiresIn * 1000);
         const userData = new User(email, userId, token, expDate);
         this.user.next(userData);
+        localStorage.setItem('userData', JSON.stringify(userData));
     }
 
 }
