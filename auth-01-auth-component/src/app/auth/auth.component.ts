@@ -29,9 +29,8 @@ export class AuthComponent {
     if (this.isLoginMode) {
       console.log(`TBA`);
     } else {
-      this.authService.signUp(email, password).subscribe(responseData => { console.log(responseData); this.isLoading = false; }, error => {
-        console.log(error);
-        this.errorMsg = 'An error occured!'
+      this.authService.signUp(email, password).subscribe(responseData => { console.log(responseData); this.isLoading = false; }, errorMessage => {
+        this.errorMsg = errorMessage;
         this.isLoading = false;
       });
     }
