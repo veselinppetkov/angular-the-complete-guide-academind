@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Subject, throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { User } from "./user.model";
 
 export interface AuthResponseData {
     idToken: string,
@@ -15,6 +16,8 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+    user: Subject<User>;
+
     constructor(private http: HttpClient) { }
 
     signUp(email: string, password: string) {
@@ -23,7 +26,9 @@ export class AuthService {
             password,
             returnSecureToken: true
         }).pipe(
-            catchError(this.errorHandler)
+            catchError(this.errorHandler), tap(resData => {
+                this.authHandler(resData.email, resData.localId, resData.idToken, +resData.expiresIn)
+            })
         )
     }
 
@@ -33,12 +38,15 @@ export class AuthService {
             password,
             returnSecureToken: true
         }).pipe(
-            catchError(this.errorHandler)
+            catchError(this.errorHandler), tap(resData => {
+                this.authHandler(resData.email, resData.localId, resData.idToken, +resData.expiresIn)
+            })
         )
     }
 
     private errorHandler(errorRes: HttpErrorResponse) {
         let errorMessage = "An unknown error occured!";
+
         if (!errorRes.error || !errorRes.error.error) {
             return throwError(errorMessage);
         }
@@ -65,6 +73,12 @@ export class AuthService {
         }
         return throwError(errorMessage);
 
+    }
+
+    private authHandler(email: string, userId: string, token: string, expiresIn: number) {
+        const expDate = new Date(new Date().getTime() + expiresIn * 1000);
+        const userData = new User(email, userId, token, expDate);
+        this.user.next(userData);
     }
 
 }
