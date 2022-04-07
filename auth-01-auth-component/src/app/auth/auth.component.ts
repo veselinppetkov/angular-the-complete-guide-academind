@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { on } from 'process';
 import { Observable } from 'rxjs';
 import { AuthResponseData, AuthService } from './auth.service';
 
@@ -48,5 +49,11 @@ export class AuthComponent {
       });
 
     form.reset();
+
   }
+
+  onClose() {
+    this.errorMsg = null;
+  }
+
 }
