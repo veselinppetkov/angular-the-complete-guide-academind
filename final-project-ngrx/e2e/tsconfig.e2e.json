@@ -2,8 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
+    "importHelpers": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "types": [
       "jasmine",
       "jasminewd2",
