@@ -1,12 +1,14 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "outDir": "../out-tsc/spec",
+    "module": "commonjs",
     "types": [
       "jasmine",
       "node"
-    ],
-    "importHelpers": true
+    ]
   },
   "files": [
     "test.ts",
