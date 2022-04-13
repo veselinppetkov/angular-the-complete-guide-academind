@@ -1,4 +1,5 @@
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { catchError, map, switchMap } from "rxjs/operators";
@@ -15,6 +16,7 @@ export interface AuthResponseData {
     registered?: boolean;
 }
 
+@Injectable()
 export class AuthEffects {
     authLogin = createEffect(() => this.actions$
         .pipe(ofType(AuthActions.LOGIN_START), switchMap((authData: AuthActions.LoginStart) => {
@@ -34,7 +36,7 @@ export class AuthEffects {
                             userId: resData.localId,
                             token: resData.idToken,
                             expirationDate: expirationDate
-                        });
+                        })
                     }),
                     catchError(errorRes => {
                         let errorMessage = 'An unknown error occurred';
