@@ -62,7 +62,7 @@ const handleError = (errorRes: any) => {
     return of(new AuthActions.AuthenticateFail(errorMessage));
 };
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthEffects {
     constructor(private actions$: Actions, private http: HttpClient, private router: Router, private authService: AuthService) { };
 
