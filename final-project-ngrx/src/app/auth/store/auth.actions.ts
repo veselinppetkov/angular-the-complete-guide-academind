@@ -5,6 +5,8 @@ export const AUTHENTICATE_SUCCESS = '[Auth] Login';
 export const AUTHENTICATE_FAIL = '[Auth] Login Fail';
 export const SIGNUP_START = '[Auth] SignUp Start';
 export const CLEAR_ERROR = '[Auth] Clear Error';
+export const AUTO_LOGOUT = '[Auth] Auto Logout';
+export const AUTO_LOGIN = '[Auth] Auto Login';
 export const LOGOUT = '[Auth] Logout';
 
 export class AuthenticateSuccess implements Action {
@@ -40,4 +42,12 @@ export class ClearError implements Action {
     readonly type = CLEAR_ERROR;
 }
 
-export type AuthActions = AuthenticateSuccess | Logout | LoginStart | AuthenticateFail | SignUpStart | ClearError;   
+export class AutoLogout implements Action {
+    readonly type = AUTO_LOGOUT;
+}
+
+export class AutoLogin implements Action {
+    readonly type = AUTO_LOGIN;
+}
+
+export type AuthActions = AuthenticateSuccess | Logout | LoginStart | AuthenticateFail | SignUpStart | ClearError | AutoLogin | AutoLogout;   

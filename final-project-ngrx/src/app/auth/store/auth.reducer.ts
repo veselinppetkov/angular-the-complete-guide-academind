@@ -46,6 +46,14 @@ export function authReducer(state = initialState, action: AuthActions.AuthAction
                 ...state,
                 authError: null,
             }
+        // case AuthActions.AUTO_LOGOUT:
+        //     return {
+        //         ...state
+        //     }
+        // case AuthActions.AUTO_LOGIN:
+        //     return {
+        //         ...state
+        //     }
         default:
             return state;
     }
