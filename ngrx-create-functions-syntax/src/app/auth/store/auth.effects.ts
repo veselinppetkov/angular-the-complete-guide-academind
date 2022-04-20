@@ -36,7 +36,7 @@ const handleAuthentication = (
 const handleError = (errorRes: any) => {
   let errorMessage = 'An unknown error occurred!';
   if (!errorRes.error || !errorRes.error.error) {
-    return of(AuthActions.authenticateFail({errorMessage}));
+    return of(AuthActions.authenticateFail({ errorMessage }));
   }
   switch (errorRes.error.error.message) {
     case 'EMAIL_EXISTS':
@@ -49,7 +49,7 @@ const handleError = (errorRes: any) => {
       errorMessage = 'This password is not correct.';
       break;
   }
-  return of(AuthActions.authenticateFail({errorMessage}));
+  return of(AuthActions.authenticateFail({ errorMessage }));
 };
 
 
@@ -62,8 +62,8 @@ export class AuthEffects {
       switchMap(action => {
         return this.http
           .post<AuthResponseData>(
-            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' +
-              environment.firebaseAPIKey,
+            'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+            environment.firebaseAPIKey,
             {
               email: action.email,
               password: action.password,
@@ -97,8 +97,8 @@ export class AuthEffects {
       switchMap(action => {
         return this.http
           .post<AuthResponseData>(
-            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' +
-              environment.firebaseAPIKey,
+            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+            environment.firebaseAPIKey,
             {
               email: action.email,
               password: action.password,
@@ -129,14 +129,14 @@ export class AuthEffects {
   authRedirect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.authenticateSuccess),
-      tap(action =>  action.redirect && this.router.navigate(['/']))
+      tap(action => action.redirect && this.router.navigate(['/']))
     ), { dispatch: false }
   );
 
 
   autoLogin$ = createEffect(() =>
     this.actions$.pipe(
-    ofType(AuthActions.autoLogin),
+      ofType(AuthActions.autoLogin),
       map(() => {
         const userData: {
           email: string;
@@ -197,5 +197,5 @@ export class AuthEffects {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 }

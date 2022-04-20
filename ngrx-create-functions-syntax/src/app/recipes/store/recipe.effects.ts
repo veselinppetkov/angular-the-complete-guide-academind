@@ -17,7 +17,7 @@ export class RecipeEffects {
       ofType(RecipesActions.fetchRecipes),
       switchMap(() => {
         return this.http.get<Recipe[]>(
-          'https://xxxxxxxxxx.firebaseio.com/recipes.json'
+          'https://ng-course-recipe-book-f1f0d-default-rtdb.europe-west1.firebasedatabase.app/recipes.json'
         );
       }),
       map(recipes => {
@@ -29,7 +29,7 @@ export class RecipeEffects {
         });
       }),
       map(recipes => {
-        return RecipesActions.setRecipes({recipes});
+        return RecipesActions.setRecipes({ recipes });
       })
     )
   );
@@ -41,7 +41,7 @@ export class RecipeEffects {
       withLatestFrom(this.store.select('recipes')),
       switchMap(([actionData, recipesState]) => {
         return this.http.put(
-          'https://xxxxxxxxxx.firebaseio.com/recipes.json',
+          'https://ng-course-recipe-book-f1f0d-default-rtdb.europe-west1.firebasedatabase.app/recipes.json',
           recipesState.recipes
         );
       })
@@ -53,5 +53,5 @@ export class RecipeEffects {
     private actions$: Actions,
     private http: HttpClient,
     private store: Store<fromApp.AppState>
-  ) {}
+  ) { }
 }
