@@ -7,11 +7,11 @@ import { Component } from '@angular/core';
   animations: [
     trigger('divState', [
       state('normal', style({
-        'background-color': 'red',
+        backgroundColor: 'red',
         transform: 'translateX(0)'
       })),
       state('highlighted', style({
-        'background-color': 'yellow',
+        backgroundColor: 'blue',
         transform: 'translateX(100px)'
       }))
     ])
