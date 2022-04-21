@@ -17,7 +17,11 @@
       </button>
       <hr />
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let item of list">
+        <li
+          class="list-group-item"
+          *ngFor="let item of list"
+          (click)="onRemove(item)"
+        >
           {{ item }}
         </li>
       </ul>
@@ -27,7 +31,11 @@
   <div class="row">
     <div class="col-xs-12">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let item of list">
+        <li
+          class="list-group-item"
+          *ngFor="let item of list"
+          (click)="onRemove(item)"
+        >
           {{ item }}
         </li>
       </ul>
