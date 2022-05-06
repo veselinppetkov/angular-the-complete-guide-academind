@@ -26,6 +26,7 @@ export class DataStorageService {
     return this.http.get<Recipe[]>(
       'https://ng-course-recipe-book-f1f0d-default-rtdb.europe-west1.firebasedatabase.app/recipes.json'
     ).pipe(map(recipes => {
+      console.log(`This is loggin in map =>` + recipes)
       return recipes.map(recipe => {
         return {
           ...recipe,
@@ -34,6 +35,7 @@ export class DataStorageService {
       });
     }),
       tap(recipes => {
+        console.log(`This is loggin in tap =>` + recipes)
         this.recipeService.setRecipes(recipes);
       }))
   }
